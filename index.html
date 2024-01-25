@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      :root {
+        --gap: 20px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      ul {
+        list-style: none;
+      }
+      .content {
+        width: 250px;
+        padding: 15px;
+        background-color: skyblue;
+        border: 1px solid blue;
+      }
+
+      .horizontal-media-scroller {
+        border: 1px solid rgb(255, 85, 0);
+        width: 600px;
+        display: grid;
+        grid-auto-flow: column;
+        grid-gap: calc(var(--gap) / 2);
+
+        overflow-x: auto;
+        overscroll-behavior-x: contain;
+        scroll-snap-type: x mandatory;
+        scroll-padding-inline: var(--gap);
+      }
+
+      .horizontal-media-scroller figure {
+        scroll-snap-align: start;
+      }
+    </style>
+  </head>
+  <body>
+    <ul class="horizontal-media-scroller">
+      <li>
+        <figure>
+          <div class="content">
+            Далеко-далеко за словесными горами в стране гласных и согласных
+            живут рыбные тексты. Семантика, текстов снова залетают коварный что
+            толку, назад даже вопроса власти запятых проектах. От всех пояс над
+            домах гор предупреждал рыбного вопрос текстами. Предложения там
+            жизни, продолжил заглавных lorem использовало жаренные рот которой
+            снова города они инициал деревни щеке лучше о!
+          </div>
+        </figure>
+      </li>
+      <li>
+        <figure>
+          <div class="content">
+            Далеко-далеко за словесными горами в стране гласных и согласных
+            живут рыбные тексты. Семантика, текстов снова залетают коварный что
+            толку, назад даже вопроса власти запятых проектах. От всех пояс над
+            домах гор предупреждал рыбного вопрос текстами. Предложения там
+            жизни, продолжил заглавных lorem использовало жаренные рот которой
+            снова города они инициал деревни щеке лучше о!
+          </div>
+        </figure>
+      </li>
+      <li>
+        <figure>
+          <div class="content">
+            Далеко-далеко за словесными горами в стране гласных и согласных
+            живут рыбные тексты. Семантика, текстов снова залетают коварный что
+            толку, назад даже вопроса власти запятых проектах. От всех пояс над
+            домах гор предупреждал рыбного вопрос текстами. Предложения там
+            жизни, продолжил заглавных lorem использовало жаренные рот которой
+            снова города они инициал деревни щеке лучше о!
+          </div>
+        </figure>
+      </li>
+    </ul>
+  </body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .wrapper {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+
+      .main {
+        height: 600px;
+        width: 600px;
+        overflow-y: auto;
+        scroll-behavior: smooth;
+      }
+
+      .container {
+        height: 600px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      #top {
+        background: tomato;
+      }
+      #center {
+        background: #0f5f0b;
+      }
+      #bottom {
+        background: skyblue;
+      }
+
+      .header {
+        position: sticky;
+        top: 0;
+        padding: 5px 10px;
+        display: flex;
+        gap: 15px;
+        background: white;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main">
+      <div class="header">
+        <a href="#top">go to top</a>
+        <a href="#center">go to center</a>
+        <a href="#bottom">go to bottom</a>
+      </div>
+      <div id="top" class="container">1</div>
+      <div id="center" class="container">2</div>
+      <div id="bottom" class="container">3</div>
+    </div>
+  </body>
+</html>

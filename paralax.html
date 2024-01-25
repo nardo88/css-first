@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .container {
+        height: 300vh;
+      }
+
+      .block {
+        width: 200px;
+        height: 200px;
+        background: tomato;
+        position: fixed;
+        top: 50px;
+
+        animation: move 3s;
+        animation-timeline: scroll();
+      }
+
+      @keyframes move {
+        0% {
+          transform: rotate(0deg) scale(1);
+        }
+        50% {
+          transform: rotate(45deg) scale(0.5);
+        }
+        100% {
+          transform: rotate(0deg) scale(1);
+        }
+      }
+
+      .second {
+        height: 400px;
+        width: 400px;
+        position: absolute;
+        right: 0;
+        top: 0;
+        overflow-y: auto;
+        border: 1px solid red;
+        scroll-timeline-name: --second;
+        scroll-timeline-axis: block;
+      }
+
+      .content {
+        height: 1200px;
+      }
+
+      .block2 {
+        width: 100px;
+        height: 100px;
+        background: tomato;
+        position: sticky;
+        top: 20px;
+
+        animation: move 3s;
+        animation-timeline: --second;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="first">
+        <div class="block"></div>
+      </div>
+      <div class="second">
+        <div class="block2"></div>
+        <div class="content"></div>
+      </div>
+    </div>
+  </body>
+</html>
