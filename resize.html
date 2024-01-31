@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      :root {
+        --aspect-ratio: 16 / 10;
+        --min-width: 0.5rem;
+        --frame: hsl(0 0% 25%);
+      }
+
+      body {
+        display: grid;
+        place-items: center;
+        min-height: 100vh;
+        background: black;
+      }
+
+      .panels {
+        width: 90vmin;
+        aspect-ratio: var(--aspect-ratio);
+        display: grid;
+        grid-template-columns: auto 1fr;
+        overflow: hidden;
+        border: 4px solid var(--frame);
+        box-shadow: 0 -1px hsl(0 0% 100% / 0.75);
+      }
+
+      .resizer {
+        position: relative;
+        top: 50%;
+        right: 0;
+        height: 40px;
+        width: 400px;
+        resize: horizontal;
+        overflow: hidden;
+        max-width: calc(100cqi - var(--min-width));
+        min-width: calc(var(--min-width) * 3);
+        transform-origin: 100% 100%;
+        scale: 4;
+        translate: 14px -50%;
+        background: green;
+        z-index: 9999;
+        clip-path: inset(calc(100% - 12px) 0 0 calc(100% - 12px));
+        opacity: 0;
+      }
+
+      .panel:first-of-type::before {
+        content: "";
+        position: absolute;
+        width: 1rem;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        background: var(--frame);
+        translate: 0% 0;
+        pointer-events: none;
+        z-index: 2;
+      }
+
+      .panel:first-of-type::after {
+        content: "";
+        position: absolute;
+        width: 0.5rem;
+        height: 2rem;
+        top: 50%;
+        bottom: 0;
+        right: 0;
+        background: hsl(10 80% 50%);
+        translate: -50% -50%;
+        pointer-events: none;
+        border-radius: 4rem;
+        box-shadow: 0 1px black, 0 1px hsl(0 0% 100% / 0.5) inset;
+        z-index: 3;
+      }
+
+      .panels:has(.resizer:is(:hover)) .panel:first-of-type::after {
+        background: hsl(10 80% 60%);
+      }
+
+      .panel {
+        background: hsl(0 0% 10%);
+      }
+
+      pre {
+        position: absolute;
+        inset: 0;
+        overflow: auto;
+        margin: 0;
+        scrollbar-width: thin;
+        scrollbar-color: hsl(0 0% 50%) transparent;
+      }
+
+      pre::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      pre::-webkit-scrollbar-thumb {
+        background: hsl(0 0% 50%);
+      }
+      pre::-webkit-scrollbar {
+        height: 8px;
+        width: 8px;
+        background: transparent;
+      }
+
+      .panel {
+        position: relative;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="panels">
+      <div class="panel">
+        <div class="resizer"></div>
+        <pre>
+      <code class="language-css">
+            .panels {
+            display: grid;
+            /* The Trick 👇 */
+            grid-template-columns: auto 1fr;
+            }
+            .resizer {
+            overflow: hidden;
+            resize: horizontal;
+            /* Scale up the handle */
+            scale: 4;
+            max-width: 100cqi;
+            clip-path: inset(
+                calc(100% - 12px)
+                0
+                0
+                calc(100% - 12px)
+            );
+            }
+      </code>
+    </pre>
+      </div>
+      <div class="panel">
+        <pre>
+      <code class="language-html">
+            &lt;div class="panels"&gt;
+            &lt;div class="panel"&gt;
+                &lt;!-- The Magic Element 👇 --&gt;
+                &lt;div class="resizer"&gt;&lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class="panel"&gt;&lt;/div&gt;    
+            &lt;/div&gt;
+            &lt;!--
+            The "Trick" is to lean into display: grid.
+            Use a relatively positioned resizable element.
+            And scale it up so you can grab the handle.
+            --&gt;
+      </code>
+    </pre>
+      </div>
+    </div>
+  </body>
+</html>
