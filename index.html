@@ -2,83 +2,147 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <style>
-      :root {
-        --gap: 20px;
-      }
-
       * {
+        margin: 0;
+        padding: 0;
         box-sizing: border-box;
+        font-family: sans-serif;
       }
 
       ul {
-        list-style: none;
+        list-style-type: none;
       }
-      .content {
-        width: 250px;
-        padding: 15px;
-        background-color: skyblue;
-        border: 1px solid blue;
-      }
+      .container {
+        max-width: 800px;
+        position: relative;
+        margin: 50px auto 0;
 
-      .horizontal-media-scroller {
-        border: 1px solid rgb(255, 85, 0);
-        width: 600px;
         display: grid;
-        grid-auto-flow: column;
-        grid-gap: calc(var(--gap) / 2);
-
-        overflow-x: auto;
-        overscroll-behavior-x: contain;
-        scroll-snap-type: x mandatory;
-        scroll-padding-inline: var(--gap);
+        grid-template-columns: auto 1fr;
       }
 
-      .horizontal-media-scroller figure {
-        scroll-snap-align: start;
+      .content {
+        container-name: content;
+        container-type: inline-size;
+      }
+
+      .wrapper {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: repeat(3, 250px);
+
+        gap: 10px;
+      }
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 4px;
+      }
+
+      img:last-child {
+        grid-column-start: 1;
+        grid-column-end: 3;
+      }
+
+      .toggle {
+        position: absolute;
+        top: 0;
+        left: 0;
+        transform: translate(-135%);
+        padding: 5px;
+        width: 30px;
+        cursor: pointer;
+        border: none;
+        color: white;
+        background: skyblue;
+        font-size: 16px;
+      }
+
+      .list__item {
+        width: 100%;
+        padding: 5px 8px;
+        cursor: pointer;
+      }
+
+      .list__item:hover {
+        background: tomato;
+        color: white;
+      }
+
+      .side {
+        width: 0;
+        overflow-x: hidden;
+        transition: width 0.3s;
+        border-radius: 4px;
+      }
+
+      .open {
+        width: 300px;
+        box-shadow: 0 0 3px 2px rgba(0, 0, 0, 0.1);
+      }
+
+      @container content (max-width: 550px) {
+        .wrapper {
+          grid-template-columns: 1fr;
+          grid-template-rows: repeat(5, 250px);
+        }
+
+        img:last-child {
+          grid-column-start: 1;
+          grid-column-end: 2;
+        }
       }
     </style>
   </head>
   <body>
-    <ul class="horizontal-media-scroller">
-      <li>
-        <figure>
-          <div class="content">
-            Далеко-далеко за словесными горами в стране гласных и согласных
-            живут рыбные тексты. Семантика, текстов снова залетают коварный что
-            толку, назад даже вопроса власти запятых проектах. От всех пояс над
-            домах гор предупреждал рыбного вопрос текстами. Предложения там
-            жизни, продолжил заглавных lorem использовало жаренные рот которой
-            снова города они инициал деревни щеке лучше о!
-          </div>
-        </figure>
-      </li>
-      <li>
-        <figure>
-          <div class="content">
-            Далеко-далеко за словесными горами в стране гласных и согласных
-            живут рыбные тексты. Семантика, текстов снова залетают коварный что
-            толку, назад даже вопроса власти запятых проектах. От всех пояс над
-            домах гор предупреждал рыбного вопрос текстами. Предложения там
-            жизни, продолжил заглавных lorem использовало жаренные рот которой
-            снова города они инициал деревни щеке лучше о!
-          </div>
-        </figure>
-      </li>
-      <li>
-        <figure>
-          <div class="content">
-            Далеко-далеко за словесными горами в стране гласных и согласных
-            живут рыбные тексты. Семантика, текстов снова залетают коварный что
-            толку, назад даже вопроса власти запятых проектах. От всех пояс над
-            домах гор предупреждал рыбного вопрос текстами. Предложения там
-            жизни, продолжил заглавных lorem использовало жаренные рот которой
-            снова города они инициал деревни щеке лучше о!
-          </div>
-        </figure>
-      </li>
-    </ul>
+    <div class="container">
+      <button class="toggle">></button>
+      <div class="side">
+        <ul class="list">
+          <li class="list__item">
+            <p class="caption">About</p>
+          </li>
+          <li class="list__item">
+            <p class="caption">Our team</p>
+          </li>
+          <li class="list__item">
+            <p class="caption">Content</p>
+          </li>
+          <li class="list__item">
+            <p class="caption">Contacts</p>
+          </li>
+          <li class="list__item">
+            <p class="caption">Information</p>
+          </li>
+        </ul>
+      </div>
+      <div class="content">
+        <div class="wrapper">
+          <img src="./javaScript.png" alt="" />
+          <img src="./next.jpg" alt="" />
+          <img src="./nodejs.jpg" alt="" />
+          <img src="./React.jpg" alt="" />
+          <img src="./ubuntu.jpg" alt="" />
+        </div>
+      </div>
+
+      <script>
+        const btn = document.querySelector(".toggle");
+        const side = document.querySelector(".side");
+
+        const toggleClass = () =>
+          side.classList.contains("open")
+            ? side.classList.remove("open")
+            : side.classList.add("open");
+
+        btn.addEventListener("click", toggleClass);
+      </script>
+    </div>
   </body>
 </html>
