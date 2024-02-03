@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .container {
+        height: 300vh;
+      }
+
+      .paralax {
+        margin-top: 100vh;
+        border: 1px solid red;
+        position: relative;
+      }
+
+      .persent {
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+
+      .paralax__wrapper {
+        position: relative;
+        width: 500px;
+        margin: 0 auto;
+        view-timeline-name: --pop;
+      }
+
+      .paralax__box {
+        width: 100%;
+        object-fit: cover;
+        border-radius: 12px;
+      }
+
+      .paralax__snowbord {
+        width: 400px;
+        position: absolute;
+        bottom: 0px;
+        left: 15%;
+
+        animation: slide linear both;
+        animation-timeline: --pop;
+        animation-range: entry 100% cover 50%;
+      }
+
+      @keyframes slide {
+        100% {
+          transform: translateY(-50%);
+        }
+      }
+
+      .lazy {
+        width: 400px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="paralax">
+        <span class="persent">0</span>
+        <div class="paralax__wrapper">
+          <img class="paralax__box" src="./fonstola.jpg" alt="" />
+          <img class="paralax__snowbord" src="./sport.png" alt="" />
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

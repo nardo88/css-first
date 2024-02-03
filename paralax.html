@@ -92,7 +92,7 @@
 
         animation: slide linear both;
         animation-timeline: --pop;
-        animation-range: entry 0% cover 50%;
+        animation-range: entry 100% cover 50%;
       }
 
       @keyframes slide {
@@ -129,13 +129,13 @@
     </div>
 
     <script>
-      const pers = document.querySelector(".persent");
-      const paralax = document.querySelector(".persent");
+      // const pers = document.querySelector(".persent");
+      // const paralax = document.querySelector(".persent");
 
-      document.addEventListener("scroll", () => {
-        const { y } = paralax.getBoundingClientRect();
-        pers.textContent = Math.floor((y / window.innerHeight) * 100) + "%";
-      });
+      // document.addEventListener("scroll", () => {
+      //   const { y } = paralax.getBoundingClientRect();
+      //   pers.textContent = Math.floor((y / window.innerHeight) * 100) + "%";
+      // });
 
       // 42:00
     </script>
